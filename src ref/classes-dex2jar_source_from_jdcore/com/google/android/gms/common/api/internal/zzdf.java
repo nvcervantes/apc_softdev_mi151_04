@@ -1,0 +1,25 @@
+package com.google.android.gms.common.api.internal;
+
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.TaskCompletionSource;
+
+public final class zzdf
+{
+  @Deprecated
+  public static Task<Void> zza(Task<Boolean> paramTask)
+  {
+    return paramTask.continueWith(new zzdg());
+  }
+  
+  public static <TResult> void zza(Status paramStatus, TResult paramTResult, TaskCompletionSource<TResult> paramTaskCompletionSource)
+  {
+    if (paramStatus.isSuccess())
+    {
+      paramTaskCompletionSource.setResult(paramTResult);
+      return;
+    }
+    paramTaskCompletionSource.setException(new ApiException(paramStatus));
+  }
+}

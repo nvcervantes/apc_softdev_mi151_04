@@ -1,0 +1,21 @@
+package com.google.android.gms.common.internal;
+
+import android.os.IBinder;
+import android.os.RemoteException;
+import com.google.android.gms.internal.zzev;
+
+public final class zzas
+  extends zzev
+  implements zzaq
+{
+  zzas(IBinder paramIBinder)
+  {
+    super(paramIBinder, "com.google.android.gms.common.internal.ICancelToken");
+  }
+  
+  public final void zza()
+    throws RemoteException
+  {
+    zzc(2, a_());
+  }
+}

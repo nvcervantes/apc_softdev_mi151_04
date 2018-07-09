@@ -1,0 +1,12 @@
+package com.google.android.gms.internal;
+
+public final class zzq
+  extends zzo
+{
+  public zzq() {}
+  
+  public zzq(Throwable paramThrowable)
+  {
+    super(paramThrowable);
+  }
+}
