@@ -12,7 +12,7 @@ $this->title = 'SOFTDEV';
         <br>        
         <center><img src="uploads/d.png" style="width:400px;height:200px;"></center></a>
         <br>
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Show Directions</a></p>
+        <p><a class="btn btn-lg btn-success" href="http://localhost/softdev/frontend/web/index.php?r=site%2Fdirections">Show Directions</a></p>
     </div>
 
     </div>

@@ -140,6 +140,10 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+    public function actionDirections()
+    {
+        return $this->render('directions');
+    }
 
     /**
      * Signs user up.
