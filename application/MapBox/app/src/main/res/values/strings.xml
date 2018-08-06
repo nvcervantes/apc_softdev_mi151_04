@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Commute-aid Mapbox</string>
+    <string name="access_token" translatable="false">pk.eyJ1IjoibmdjZWVuem9uZWQiLCJhIjoiY2prZjJsMDZiMDJ1ZjNwcWdtZjAwaGk1ciJ9.rrLHfhWQPrBbApdL_ChXww</string>
+
+</resources>
