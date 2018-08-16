@@ -219,13 +219,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
 
         mMap.clear();
+        mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter(MapActivity.this));
 
         if(placeInfo != null){
             try{
                 String snippet = "Address: " + placeInfo.getAddress() + "\n" +
                         "Phone Number: " + placeInfo.getPhoneNumber() + "\n" +
                         "Website: " + placeInfo.getWebsiteUri() + "\n" +
-                        "Price Rating: " + placeInfo.getRating() + "\n";
+                        "Rating: " + placeInfo.getRating() + "\n";
 
                 MarkerOptions options = new MarkerOptions().position(latLng).title(placeInfo.getName()).snippet(snippet);
                 mMarker = mMap.addMarker(options);
