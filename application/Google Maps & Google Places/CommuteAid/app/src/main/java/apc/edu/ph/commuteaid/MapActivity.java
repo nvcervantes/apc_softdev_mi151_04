@@ -88,7 +88,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 
     private AutoCompleteTextView mSearchText;
-    private ImageView mGPS;
+    private ImageView mGPS, mInfo;
 
     private Boolean mLocationPermissionsGranted = false;
     private GoogleMap mMap;
@@ -104,7 +104,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_map);
         mSearchText = (AutoCompleteTextView) findViewById(R.id.input_search);
         mGPS = (ImageView) findViewById(R.id.ic_gps);
-
+        mInfo = (ImageView) findViewById(R.id.place_info);
         getLocationPermission();
 
     }
@@ -149,6 +149,23 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             public void onClick(View view) {
                 Log.d(TAG, "onClick: clicked gps icon");
                 getDeviceLocation();
+            }
+        });
+
+        mInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "onClick: clicked place info");
+                try{
+                    if(mMarker.isInfoWindowShown()){
+                        mMarker.hideInfoWindow();
+                    }else{
+                        Log.d(TAG, "onClick: place info: " + mPlace.toString());
+                        mMarker.showInfoWindow();
+                    }
+                }catch(NullPointerException e){
+                    Log.e(TAG, "onClick: NullPointerException: " + e.getMessage() );
+                }
             }
         });
         hideSoftKeyboard();
@@ -211,11 +228,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         "Price Rating: " + placeInfo.getRating() + "\n";
 
                 MarkerOptions options = new MarkerOptions().position(latLng).title(placeInfo.getName()).snippet(snippet);
-                mMap.addMarker(options);
+                mMarker = mMap.addMarker(options);
 
             }catch (NullPointerException e){
-                Log.d(TAG, "moveCamera: NullPointerException: " + e.getMessage());
+                Log.e(TAG, "moveCamera: " + e.getMessage());
             }
+        }else{
+            mMap.addMarker(new MarkerOptions().position(latLng));
         }
         hideSoftKeyboard();
 
