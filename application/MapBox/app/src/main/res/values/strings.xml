@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">Commute-aid Mapbox</string>
     <string name="access_token" translatable="false">pk.eyJ1IjoibmdjZWVuem9uZWQiLCJhIjoiY2prZjJsMDZiMDJ1ZjNwcWdtZjAwaGk1ciJ9.rrLHfhWQPrBbApdL_ChXww</string>
-
+    <string name="dropoff_dialog_title">You have arrived! </string>
+    <string name="dropoff_dialog_text">Would you like to rate your trip?</string>
+    <string name="rating_screen_route_label">Route taken: </string>
+    <string name="rating_screen_route_label2">--to-- </string>
+    <string name="rating_screen_route_prompt">Note: * -> REQUIRED </string>
+    <string name="rating_screen_route_label3">How accurate was the ETA of the route?*</string>
+    <string name="rating_screen_route_label4">How affordable was the cost of the route?*</string>
+    <string name="rating_screen_route_label5">Is the route easily accessible?*</string>
+    <string name="rating_screen_route_label6">Additional Comments?</string>
+    <string name="rating_screen_route_submit">S U B M I T</string>
 </resources>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\Shierene\.android\build-cache\1449b28c30c06a5765bb600f7b90ef8e22df8a51\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="88246166d5afb106f532f6e6deae683c66b42c89">
+        <dex dex="C:\Users\Shierene\Desktop\apc_softdev_mi151_04\application\CommuteAid\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_7bd96a18d92b0c5bcdc2d2e2dd752691e2eb4b60\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Shierene\Desktop\apc_softdev_mi151_04\application\CommuteAid\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="712d83457da100f85a3d2b68fcbf8953b35cd847">
+        <dex dex="C:\Users\Shierene\Desktop\apc_softdev_mi151_04\application\CommuteAid\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_3e35bef693a624bdfcf0181d8cd87743c497a65a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Shierene\.android\build-cache\9dad5055349942f8004b067e5d72ee52e588c133\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="18d31838aa4fcc768a8a0516e22cc13b94655d89">
+        <dex dex="C:\Users\Shierene\Desktop\apc_softdev_mi151_04\application\CommuteAid\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b4f11af14fc4ddf73323e991d7174ea7d8332938\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Shierene\.android\build-cache\48f1a74673035c3fb8cc20f1a4ac400629905dff\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="9935891f23923f39d002087085d9696568a9f657">
+        <dex dex="C:\Users\Shierene\Desktop\apc_softdev_mi151_04\application\CommuteAid\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_88f5fd5f9c1bf6545e00e17834c08b8a9b69db56\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Shierene\.android\build-cache\1b806240f8b6bf38c7b2c3aaa9efa6cf246f76ac\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="fcd01fd11233459f546c437ec927e9b61bf7caf1">
+        <dex dex="C:\Users\Shierene\Desktop\apc_softdev_mi151_04\application\CommuteAid\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_a4106f845d4821ebcaa278016faa7ea66d713c09\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Shierene\Desktop\apc_softdev_mi151_04\application\CommuteAid\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="C:\Users\Shierene\Desktop\apc_softdev_mi151_04\application\CommuteAid\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_826e571c4cfc88480dc38ff50ad0c2e2a2619af4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Shierene\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="C:\Users\Shierene\Desktop\apc_softdev_mi151_04\application\CommuteAid\app\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.2_de7fa91d99abd9420e681084daa1d4e94fd60abf\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Shierene\.android\build-cache\9a0a661d17e0eea3b64ad1df0424252e6d423639\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\Shierene\Desktop\apc_softdev_mi151_04\application\CommuteAid\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_12b18cd8780011f101ba77bb9a9f7fbb2c232480\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Shierene\.android\build-cache\22e2c22fc5845e45ca122b1e220c0860da9aa804\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="2e92aa0163544a804a0b34f169ca61801770839a">
+        <dex dex="C:\Users\Shierene\Desktop\apc_softdev_mi151_04\application\CommuteAid\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_a845257126c37024379cfb801e1696640c017e3d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Shierene\.android\build-cache\a5b1f415bd306fccf7930524464865d60bd5d074\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="C:\Users\Shierene\Desktop\apc_softdev_mi151_04\application\CommuteAid\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ab6b61170fcc0d11f35cb3a3649b01aa225b6fb9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Shierene\.android\build-cache\9a4ecb96c1e4beb8e7072e9dbd58ed5760bfa897\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="8df0e365e40beb151bc42dee20817721a6cab7b0">
+        <dex dex="C:\Users\Shierene\Desktop\apc_softdev_mi151_04\application\CommuteAid\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_40b1d2733e83ed1dc30889317c6668954bfc22b0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Shierene\.android\build-cache\36916d0b9327aa5ee1faac67456425ab870d181c\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="47471eb19df288158b00b8d9cfa41bce7373f5cc">
+        <dex dex="C:\Users\Shierene\Desktop\apc_softdev_mi151_04\application\CommuteAid\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_7ba27722b933a13af0a4a047f445c39b0d1391bb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Shierene\.android\build-cache\cfb559634cb7788c0e24f8f420efee77fb5748c8\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="952944218ecedea1554a513dec0c14d570642843">
+        <dex dex="C:\Users\Shierene\Desktop\apc_softdev_mi151_04\application\CommuteAid\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b108bd55f69df1c63cb7a179c2531e002f8ea262\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Shierene\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\26.0.0-alpha1\support-annotations-26.0.0-alpha1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.1"
+        sha1="023ee503b631f69511e335a061ea008f8da60f40">
+        <dex dex="C:\Users\Shierene\Desktop\apc_softdev_mi151_04\application\CommuteAid\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-26.0.0-alpha1_c2d90272ee843208247aa3b99523140e14fb5c3a\classes.dex" />
+    </item>
+
+</items>
