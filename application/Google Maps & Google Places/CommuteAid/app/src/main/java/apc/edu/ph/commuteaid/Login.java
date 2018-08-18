@@ -14,7 +14,7 @@ public class Login extends AppCompatActivity {
     }
 
     public void login(View v) {
-        startActivity(new Intent(Login.this,MapActivity.class));
+        startActivity(new Intent(Login.this,CheckGooglePlayServices.class));
     }
     public void register(View v) {
         startActivity(new Intent(Login.this, Register.class));

@@ -15,6 +15,6 @@ public class Register extends AppCompatActivity {
         setContentView(R.layout.activity_register);
     }
     public void register(View v) {
-        startActivity(new Intent(Register.this, MapActivity.class));
+        startActivity(new Intent(Register.this, CheckGooglePlayServices.class));
     }
 }
