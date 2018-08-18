@@ -1,8 +1,15 @@
 package apc.commuteaid.mapbox;
 import java.util.List;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Vibrator;
 
 // classes needed to initialize map
 import com.mapbox.mapboxsdk.Mapbox;
@@ -97,11 +104,22 @@ import android.util.Log;
 // classes needed to launch navigation UI
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 
 import com.mapbox.services.android.navigation.ui.v5.NavigationLauncher;
 
+import com.mapbox.services.android.navigation.ui.v5.NavigationView;
+import com.mapbox.services.android.navigation.ui.v5.NavigationViewOptions;
+import com.mapbox.services.android.navigation.ui.v5.OnNavigationReadyCallback;
+import com.mapbox.services.android.navigation.ui.v5.listeners.NavigationListener;
+import com.mapbox.services.android.navigation.ui.v5.listeners.RouteListener;
+import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
+import com.mapbox.services.android.navigation.v5.routeprogress.ProgressChangeListener;
+import com.mapbox.services.android.navigation.v5.routeprogress.RouteProgress;
 
-public class NavigationActivity extends AppCompatActivity implements LocationEngineListener, PermissionsListener {
+
+public class NavigationActivity extends AppCompatActivity implements
+        LocationEngineListener, PermissionsListener, ProgressChangeListener, NavigationListener {
 
 
     private MapView mapView;
@@ -130,6 +148,11 @@ public class NavigationActivity extends AppCompatActivity implements LocationEng
 
 
     private Button button;
+    private Switch locationAlarm, timeAlarm;
+    private boolean geoAlarm, chronoAlarm;
+    private boolean alarmSounded;
+    private MediaPlayer alarmPlayer = null;
+    private Context context;
 
 
     @Override
@@ -138,7 +161,8 @@ public class NavigationActivity extends AppCompatActivity implements LocationEng
         Mapbox.getInstance(this, getString(R.string.access_token));
         setContentView(R.layout.activity_main);
         mapView = findViewById(R.id.mapView);
-        mapView.onCreate(savedInstanceState);
+
+        context = this;
 
 
         mapView.getMapAsync(new OnMapReadyCallback() {
@@ -179,8 +203,17 @@ public class NavigationActivity extends AppCompatActivity implements LocationEng
 
 
                 button = findViewById(R.id.startButton);
+                locationAlarm = findViewById(R.id.location_alarm);
+                timeAlarm = findViewById(R.id.time_alarm);
                 button.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
+                        button.setEnabled(false);
+                        if (locationAlarm.isChecked() == true){
+                            geoAlarm = true;
+                        }
+                        if (timeAlarm.isChecked() == true){
+                            chronoAlarm = true;
+                        }
                         boolean simulateRoute = true;
                         NavigationLauncherOptions options = NavigationLauncherOptions.builder()
                                 .directionsRoute(currentRoute)
@@ -369,4 +402,84 @@ public class NavigationActivity extends AppCompatActivity implements LocationEng
     }
 
 
+    @Override
+    public void onCancelNavigation() {
+        finish();
+    }
+
+    @Override
+    public void onNavigationFinished() {
+        showDropoffDialog();
+    }
+
+    @Override
+    public void onNavigationRunning() {
+
+    }
+
+    @Override
+    public void onProgressChange(Location location, RouteProgress routeProgress) {
+        if (geoAlarm == true && routeProgress.distanceRemaining() < 500.0 && alarmSounded == false){
+            alarmSounded = true;
+            AlertDialog.Builder alarm = new AlertDialog.Builder(this);
+            Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            v.vibrate(VibrationEffect.createOneShot(5000,VibrationEffect.DEFAULT_AMPLITUDE));
+            alarmPlayer = MediaPlayer.create(context, R.raw.alarm);
+            alarmPlayer.start();
+            alarm.setTitle("You are nearing your destination! ");
+            alarm.setMessage("Keep an eye out for your stop!");
+            alarm.setPositiveButton("Stop sounds", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    alarmPlayer.stop();
+                    alarmPlayer.release();
+                    v.cancel();
+                }
+            });
+            alarm.show();
+        }
+        if (chronoAlarm == true && routeProgress.durationRemaining() < 300.0){
+            alarmSounded = true;
+            AlertDialog.Builder alarm = new AlertDialog.Builder(this);
+            Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+            v.vibrate(VibrationEffect.createOneShot(5000,VibrationEffect.DEFAULT_AMPLITUDE));
+            alarmPlayer = MediaPlayer.create(context, R.raw.alarm);
+            alarmPlayer.start();
+            alarm.setTitle("You are nearing your destination! ");
+            alarm.setMessage("Keep an eye out for your stop!");
+            alarm.setPositiveButton("Stop sounds", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    alarmPlayer.stop();
+                    alarmPlayer.release();
+                    v.cancel();
+                }
+            });
+            alarm.show();
+        }
+    }
+
+    private void showDropoffDialog() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle(getString(R.string.dropoff_dialog_title));
+        alertDialog.setMessage(getString(R.string.dropoff_dialog_text));
+        alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String routeStart; // Enter the starting point of the route here
+                String routeDestination; //Enter the end point of the route here
+                Intent ratingIntent = new Intent(NavigationActivity.this, RouteRatingScreen.class);
+                //ratingIntent.putExtra("routeStart", routeStart);
+                //ratingIntent.putExtra("routeDestination", routeDestination);
+                startActivity(ratingIntent);
+            }
+        });
+        alertDialog.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        alertDialog.show();
+    }
 }
