@@ -28,10 +28,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CheckGooglePlayServices" />
-        <activity android:name=".MapActivity" />
         <activity android:name=".Login" />
-        <activity android:name=".Register"></activity>
+        <activity android:name=".Register" />
+        <activity android:name=".CheckGooglePlayServices" />
+        <activity android:name=".MapActivity"></activity>
     </application>
 
 </manifest>
