@@ -30,6 +30,8 @@
         </activity>
         <activity android:name=".CheckGooglePlayServices" />
         <activity android:name=".MapActivity" />
+        <activity android:name=".Login" />
+        <activity android:name=".Register"></activity>
     </application>
 
 </manifest>
