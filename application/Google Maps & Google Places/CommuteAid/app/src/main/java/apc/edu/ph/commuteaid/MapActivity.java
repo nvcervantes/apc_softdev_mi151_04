@@ -128,7 +128,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mSearchText.setOnItemClickListener(mAutocompleteClickListener);
 
         mPlaceAutocompleteAdapter = new PlaceAutocompleteAdapter(this,
-                Places.getGeoDataClient(this, null),
+                Places.getGeoDataClient(this,null),
                 LAT_LNG_BOUNDS,
                 null);
 
