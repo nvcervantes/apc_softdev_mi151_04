@@ -24,6 +24,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amazonaws.mobile.client.AWSStartupHandler;
+import com.amazonaws.mobile.client.AWSStartupResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -57,7 +59,7 @@ import java.util.List;
 
 import apc.edu.ph.commuteaid.models.PlaceInfo;
 
-
+import com.amazonaws.mobile.client.AWSMobileClient;
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback,
         GoogleApiClient.OnConnectionFailedListener{
 
@@ -113,8 +115,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         getLocationPermission();
 
+                AWSMobileClient.getInstance().initialize(this, new AWSStartupHandler() {
+                    @Override
+                    public void onComplete(AWSStartupResult awsStartupResult) {
+                        Log.d("YourMainActivity", "AWSMobileClient is instantiated and you are connected to AWS!");
+                    }
+                }).execute();
     }
-
     private void init(){
         Log.d(TAG, "init: initializing");
 
