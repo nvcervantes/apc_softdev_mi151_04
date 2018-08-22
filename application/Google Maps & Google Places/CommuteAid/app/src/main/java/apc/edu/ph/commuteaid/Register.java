@@ -33,7 +33,7 @@ public class Register extends AppCompatActivity {
 
     }
     public void registerUser(View v) {
-        // startActivity(new Intent(Register.this,SeminarListActivity.class));
+        // startActivity(new Intent(Register.this,PuvListActivity.class));
         final ProgressDialog progressDialog = ProgressDialog.show(Register.this, "Please Wait...", "Processing", true);
         (firebaseAuth.createUserWithEmailAndPassword(register_username.getText().toString(), register_password.getText().toString())).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override

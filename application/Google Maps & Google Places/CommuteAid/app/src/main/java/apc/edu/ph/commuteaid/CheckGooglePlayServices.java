@@ -2,7 +2,6 @@ package apc.edu.ph.commuteaid;
 
 import android.app.Dialog;
 import android.content.Intent;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -56,4 +55,9 @@ public class CheckGooglePlayServices extends AppCompatActivity {
         }
         return false;
     }
+
+    public void reserveSeat(View v) {
+        startActivity(new Intent(CheckGooglePlayServices.this, PuvListActivity.class));
+    }
+
 }

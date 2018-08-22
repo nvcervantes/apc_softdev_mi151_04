@@ -31,7 +31,14 @@
         <activity android:name=".Login" />
         <activity android:name=".Register" />
         <activity android:name=".CheckGooglePlayServices" />
-        <activity android:name=".MapActivity"></activity>
+        <activity android:name=".MapActivity" />
+        <activity android:name=".SeatReservation" />
+        <activity android:name=".PuvListActivity" />
+        <activity android:name=".PuvEditActivity" />
+        <activity
+            android:name=".PuvActivity"
+            android:label="@string/title_activity_seminar"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
