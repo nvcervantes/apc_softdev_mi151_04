@@ -42,8 +42,6 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(Login.this, "Login Successful!", Toast.LENGTH_LONG).show();
                     Intent i = new Intent(Login.this, CheckGooglePlayServices.class);
                     startActivity(i);
-
-
                 }
                 else {
 

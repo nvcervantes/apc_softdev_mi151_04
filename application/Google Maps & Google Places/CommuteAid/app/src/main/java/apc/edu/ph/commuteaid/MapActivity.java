@@ -57,7 +57,7 @@ import java.util.List;
 
 import apc.edu.ph.commuteaid.models.PlaceInfo;
 
-
+import com.amazonaws.mobile.client.AWSMobileClient;
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback,
         GoogleApiClient.OnConnectionFailedListener{
 
@@ -102,6 +102,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private PlaceInfo mPlace;
     private Marker mMarker;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,11 +113,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mPlacePicker = (ImageView) findViewById(R.id.place_picker);
 
         getLocationPermission();
-
     }
-
     private void init(){
-        Log.d(TAG, "init: initializing");
 
         mGoogleApiClient = new GoogleApiClient
                 .Builder(this)

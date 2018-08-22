@@ -119,7 +119,7 @@ import com.mapbox.services.android.navigation.v5.routeprogress.RouteProgress;
 
 
 public class NavigationActivity extends AppCompatActivity implements
-        LocationEngineListener, PermissionsListener, ProgressChangeListener, NavigationListener {
+        LocationEngineListener, PermissionsListener, ProgressChangeListener, NavigationListener, RouteListener{
 
 
     private MapView mapView;
@@ -208,11 +208,15 @@ public class NavigationActivity extends AppCompatActivity implements
                 button.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         button.setEnabled(false);
-                        if (locationAlarm.isChecked() == true){
+                        if (locationAlarm.isChecked()){
                             geoAlarm = true;
+                        } else {
+                            geoAlarm = false;
                         }
-                        if (timeAlarm.isChecked() == true){
+                        if (timeAlarm.isChecked()){
                             chronoAlarm = true;
+                        } else {
+                            chronoAlarm = false;
                         }
                         boolean simulateRoute = true;
                         NavigationLauncherOptions options = NavigationLauncherOptions.builder()
@@ -409,6 +413,7 @@ public class NavigationActivity extends AppCompatActivity implements
 
     @Override
     public void onNavigationFinished() {
+        finish();
         showDropoffDialog();
     }
 
@@ -419,11 +424,12 @@ public class NavigationActivity extends AppCompatActivity implements
 
     @Override
     public void onProgressChange(Location location, RouteProgress routeProgress) {
-        if (geoAlarm == true && routeProgress.distanceRemaining() < 500.0 && alarmSounded == false){
+        location = originLocation;
+        if (geoAlarm && routeProgress.distanceRemaining() < 0.5 && !alarmSounded){
             alarmSounded = true;
             AlertDialog.Builder alarm = new AlertDialog.Builder(this);
             Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-            v.vibrate(VibrationEffect.createOneShot(5000,VibrationEffect.DEFAULT_AMPLITUDE));
+            v.vibrate(VibrationEffect.createOneShot(10000,VibrationEffect.DEFAULT_AMPLITUDE));
             alarmPlayer = MediaPlayer.create(context, R.raw.alarm);
             alarmPlayer.start();
             alarm.setTitle("You are nearing your destination! ");
@@ -438,11 +444,11 @@ public class NavigationActivity extends AppCompatActivity implements
             });
             alarm.show();
         }
-        if (chronoAlarm == true && routeProgress.durationRemaining() < 300.0){
+        if (chronoAlarm && routeProgress.durationRemaining() < 5.0 && !alarmSounded){
             alarmSounded = true;
             AlertDialog.Builder alarm = new AlertDialog.Builder(this);
             Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-            v.vibrate(VibrationEffect.createOneShot(5000,VibrationEffect.DEFAULT_AMPLITUDE));
+            v.vibrate(VibrationEffect.createOneShot(10000,VibrationEffect.DEFAULT_AMPLITUDE));
             alarmPlayer = MediaPlayer.create(context, R.raw.alarm);
             alarmPlayer.start();
             alarm.setTitle("You are nearing your destination! ");
@@ -481,5 +487,30 @@ public class NavigationActivity extends AppCompatActivity implements
             }
         });
         alertDialog.show();
+    }
+
+    @Override
+    public boolean allowRerouteFrom(Point offRoutePoint) {
+        return false;
+    }
+
+    @Override
+    public void onOffRoute(Point offRoutePoint) {
+
+    }
+
+    @Override
+    public void onRerouteAlong(DirectionsRoute directionsRoute) {
+
+    }
+
+    @Override
+    public void onFailedReroute(String errorMessage) {
+
+    }
+
+    @Override
+    public void onArrival() {
+        showDropoffDialog();
     }
 }
