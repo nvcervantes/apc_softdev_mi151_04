@@ -119,7 +119,7 @@ import com.mapbox.services.android.navigation.v5.routeprogress.RouteProgress;
 
 
 public class NavigationActivity extends AppCompatActivity implements
-        LocationEngineListener, PermissionsListener, ProgressChangeListener, NavigationListener {
+        LocationEngineListener, PermissionsListener, ProgressChangeListener, NavigationListener, RouteListener{
 
 
     private MapView mapView;
@@ -424,6 +424,7 @@ public class NavigationActivity extends AppCompatActivity implements
 
     @Override
     public void onProgressChange(Location location, RouteProgress routeProgress) {
+        location = originLocation;
         if (geoAlarm && routeProgress.distanceRemaining() < 0.5 && !alarmSounded){
             alarmSounded = true;
             AlertDialog.Builder alarm = new AlertDialog.Builder(this);
@@ -486,5 +487,30 @@ public class NavigationActivity extends AppCompatActivity implements
             }
         });
         alertDialog.show();
+    }
+
+    @Override
+    public boolean allowRerouteFrom(Point offRoutePoint) {
+        return false;
+    }
+
+    @Override
+    public void onOffRoute(Point offRoutePoint) {
+
+    }
+
+    @Override
+    public void onRerouteAlong(DirectionsRoute directionsRoute) {
+
+    }
+
+    @Override
+    public void onFailedReroute(String errorMessage) {
+
+    }
+
+    @Override
+    public void onArrival() {
+        showDropoffDialog();
     }
 }
