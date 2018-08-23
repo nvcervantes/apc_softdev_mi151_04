@@ -49,14 +49,14 @@ public class PuvListActivity extends AppCompatActivity {
 
         preparePuvs();
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_add);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(PuvListActivity.this, PuvEditActivity.class);
-                startActivity(i);
-            }
-        });
+      //  FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_add);
+       // fab.setOnClickListener(new View.OnClickListener() {
+         //   @Override
+           // public void onClick(View v) {
+             //   Intent i = new Intent(PuvListActivity.this, PuvEditActivity.class);
+               // startActivity(i);
+           // }
+        //});
 
 
 
