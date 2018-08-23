@@ -243,6 +243,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             Log.d(TAG, "geoLocate: found a location: " + address.toString());
             //Toast.makeText(this, address.toString(), Toast.LENGTH_SHORT).show();
             moveCamera(new LatLng(address.getLatitude(), address.getLongitude()), DEFAULT_ZOOM, address.getAddressLine(0));
+            button.setEnabled(true);
+            button.setBackgroundResource(R.color.mapboxBlue);
             destinationCoordLat = address.getLatitude();
             destinationCoordLng = address.getLongitude();
         }
