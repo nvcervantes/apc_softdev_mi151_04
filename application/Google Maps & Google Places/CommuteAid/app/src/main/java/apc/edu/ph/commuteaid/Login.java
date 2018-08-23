@@ -31,7 +31,7 @@ public class Login extends AppCompatActivity {
 
     }
     public void login(View v) {
-        // startActivity(new Intent(Login.this,SeminarListActivity.class));
+        // startActivity(new Intent(Login.this,PuvListActivity.class));
         final ProgressDialog progressDialog = ProgressDialog.show(Login.this, "Please Wait...", "Processing", true);
         (firebaseAuth.signInWithEmailAndPassword(emailAddress.getText().toString(), password.getText().toString())).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
