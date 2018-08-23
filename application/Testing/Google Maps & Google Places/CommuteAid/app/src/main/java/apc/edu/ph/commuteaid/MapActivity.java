@@ -316,6 +316,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     .position(latLng)
                     .title(title);
             mMap.addMarker(options);
+            destinationCoordLat = latLng.latitude;
+            destinationCoordLng = latLng.longitude;
             button.setEnabled(true);
             button.setBackgroundResource(R.color.mapboxBlue);
         }
