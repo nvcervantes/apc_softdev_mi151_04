@@ -117,6 +117,11 @@ public class NavigationActivity extends AppCompatActivity implements
         double originCoordLng = Double.parseDouble(naviIntent.getStringExtra("originCoordLng"));
         double destinationCoordLat = Double.parseDouble(naviIntent.getStringExtra("destinationCoordLat"));
         double destinationCoordLng = Double.parseDouble(naviIntent.getStringExtra("destinationCoordLng"));
+            
+        Log.d(TAG, "origin latitude: " + originCoordLat);
+        Log.d(TAG, "origin longitude: " + originCoordLng);
+        Log.d(TAG, "destination latitude: " + destinationCoordLat);
+        Log.d(TAG, "destination latitude: " + destinationCoordLng);
 
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
