@@ -85,8 +85,7 @@
         android:layout_alignParentEnd="true"
         android:layout_margin="20px"
         android:layout_marginBottom="12dp"
-        android:background="@color/mapboxGrayLight"
-        android:enabled="false"
+        android:background="@color/mapboxBlue"
         android:padding="5px"
         android:text="Directions"
         android:textColor="@color/mapboxWhite" />
