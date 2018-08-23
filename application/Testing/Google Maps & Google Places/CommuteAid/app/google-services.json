@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "372291775883",
+    "firebase_url": "https://commute-aid.firebaseio.com",
+    "project_id": "commute-aid",
+    "storage_bucket": "commute-aid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:372291775883:android:e9e661ccde6a369b",
+        "android_client_info": {
+          "package_name": "apc.edu.ph.commuteaid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "372291775883-vju6krt90riga6adihstd56gkam54600.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "apc.edu.ph.commuteaid",
+            "certificate_hash": "36e2e1243f5a5705004374b9a36269fdcc8a6ce1"
+          }
+        },
+        {
+          "client_id": "372291775883-kp4u48elttip15fboe6a19786mk5hfj9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlnjgFAPcTaOfTppxfniAyJyhKF1cGwbM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "372291775883-kp4u48elttip15fboe6a19786mk5hfj9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
