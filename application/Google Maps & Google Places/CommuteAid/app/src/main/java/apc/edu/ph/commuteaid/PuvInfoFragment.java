@@ -6,8 +6,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
-
+import android.widget.Toast;
 
 
 public class PuvInfoFragment extends Fragment {
@@ -16,6 +18,7 @@ public class PuvInfoFragment extends Fragment {
     private TextView platenumber, date, venue, availableseats, remarks;
     private PuvActivity puvActivity;
     private Puv puv;
+    private Button bt_toast;
 
 
     @Nullable
@@ -30,6 +33,8 @@ public class PuvInfoFragment extends Fragment {
         venue = (TextView) view.findViewById(R.id.stv_venue);
         availableseats = (TextView) view.findViewById(R.id.stv_speaker);
         remarks = (TextView) view.findViewById(R.id.stv_agenda);
+        bt_toast = (Button) view.findViewById(R.id.stv_reserve);
+
 
         puvActivity = (PuvActivity)getActivity();
         puv = puvActivity.getPuv();
@@ -40,7 +45,16 @@ public class PuvInfoFragment extends Fragment {
         availableseats.setText(puv.getAvailableseats());
         remarks.setText(puv.getRemarks());
 
+        bt_toast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    Toast.makeText(puvActivity, "A seat has been reserved for you!", Toast.LENGTH_SHORT).show();
+                }
+
+        });
 
         return view;
     }
+
 }
+
