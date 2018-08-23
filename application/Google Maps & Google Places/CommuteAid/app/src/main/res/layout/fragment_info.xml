@@ -106,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
-                android:text="Speaker"
+                android:text="Available Seats"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toRightOf="@+id/ic_speaker"
@@ -118,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
-                android:text="Krisper Baryawan"
+                android:text="Haha"
                 app:layout_constraintBottom_toBottomOf="@+id/ic_speaker"
                 app:layout_constraintLeft_toRightOf="@+id/ic_speaker" />
 
@@ -140,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
-                android:text="Agenda"
+                android:text="Remarks"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintLeft_toRightOf="@+id/ic_agenda"
