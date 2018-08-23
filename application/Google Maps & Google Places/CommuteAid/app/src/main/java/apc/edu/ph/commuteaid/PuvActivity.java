@@ -22,11 +22,11 @@ public class PuvActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
 
-    public String seminarKey;
+    public String puvKey;
 
-    private DatabaseReference seminarsRef;
+    private DatabaseReference puvsRef;
 
-    private static Puv seminar;
+    private static Puv puv;
 
     private ImageView toolbarImage;
 
@@ -36,9 +36,9 @@ public class PuvActivity extends AppCompatActivity {
         setContentView(R.layout.activity_puv);
         Log.d(TAG, "onCreate: Starting.");
 
-        seminarKey = getIntent().getStringExtra("SEMINAR_KEY");
+        puvKey = getIntent().getStringExtra("PUV_KEY");
 
-        seminarsRef = FirebaseDatabase.getInstance().getReference("seminars");
+        puvsRef = FirebaseDatabase.getInstance().getReference("puvs");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -49,7 +49,7 @@ public class PuvActivity extends AppCompatActivity {
 
         toolbarImage = (ImageView) findViewById(R.id.tiv_bg);
 
-        prepareSeminar(seminarKey);
+        preparePuv(puvKey);
 
 
     }
@@ -62,15 +62,15 @@ public class PuvActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
     }
 
-    private void prepareSeminar(final String seminarKey) {
+    private void preparePuv(final String puvKey) {
 
-        seminarsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        puvsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot seminarSnapshot : dataSnapshot.getChildren()) {
-                    if (seminarSnapshot.getKey().equals(seminarKey)) {
-                        seminar = seminarSnapshot.getValue(Puv.class);
-                        seminar.setId(seminarSnapshot.getKey());
+                for (DataSnapshot puvSnapshot : dataSnapshot.getChildren()) {
+                    if (puvSnapshot.getKey().equals(puvKey)) {
+                        puv = puvSnapshot.getValue(Puv.class);
+                        puv.setId(puvSnapshot.getKey());
 
                         viewPager = (ViewPager) findViewById(R.id.container);
                         setupViewPager(viewPager);
@@ -79,14 +79,10 @@ public class PuvActivity extends AppCompatActivity {
                         tabLayout.setupWithViewPager(viewPager);
 
 
-                        if (seminar.getCategory().equals("Technology")) {
+                        if (puv.getCategory().equals("Jeepney")) {
                             toolbarImage.setImageDrawable(getDrawable(R.drawable.jeepney));
-                        } else if (seminar.getCategory().equals("Media Arts")) {
-                            toolbarImage.setImageDrawable(getDrawable(R.drawable.arts));
-                        } else if (seminar.getCategory().equals("Business")) {
-                            toolbarImage.setImageDrawable(getDrawable(R.drawable.business));
-                        } else if (seminar.getCategory().equals("General")) {
-                            toolbarImage.setImageDrawable(getDrawable(R.drawable.general));
+                        } else if (puv.getCategory().equals("Bus")) {
+                            toolbarImage.setImageDrawable(getDrawable(R.drawable.bus));
                         }
                     }
                 }
@@ -99,8 +95,8 @@ public class PuvActivity extends AppCompatActivity {
         });
     }
 
-    public Puv getSeminar() {
-        return seminar;
+    public Puv getPuv() {
+        return puv;
     }
 
 

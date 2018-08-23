@@ -23,10 +23,10 @@ import java.util.List;
 
 public class PuvListActivity extends AppCompatActivity {
 
-    private List<Puv> seminarList = new ArrayList<>();
+    private List<Puv> puvList = new ArrayList<>();
     private RecyclerView rv;
-    private PuvAdapter seminarAdapter;
-    private DatabaseReference seminarsRef;
+    private PuvAdapter puvAdapter;
+    private DatabaseReference puvsRef;
     private ProgressBar spinner;
     private SwipeRefreshLayout swipeRefreshLayout;
 
@@ -38,16 +38,16 @@ public class PuvListActivity extends AppCompatActivity {
         spinner = (ProgressBar) findViewById(R.id.progressCircle);
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeLayout);
         rv = (RecyclerView) findViewById(R.id.rv);
-        seminarsRef = FirebaseDatabase.getInstance().getReference("seminars");
+        puvsRef = FirebaseDatabase.getInstance().getReference("puvs");
 
-        seminarAdapter = new PuvAdapter(this, seminarList);
+        puvAdapter = new PuvAdapter(this, puvList);
         LinearLayoutManager tLayoutManager = new LinearLayoutManager(getApplicationContext());
         rv.setLayoutManager(tLayoutManager);
         rv.setItemAnimator(new DefaultItemAnimator());
 
         swipeRefreshLayout.setColorSchemeResources(R.color.primaryColor, R.color.primaryLightColor, R.color.primaryDarkColor);
 
-        prepareSeminars();
+        preparePuvs();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_add);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -67,8 +67,8 @@ public class PuvListActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         rv.removeAllViewsInLayout();
-                        seminarList.clear();
-                        prepareSeminars();
+                        puvList.clear();
+                        preparePuvs();
                         swipeRefreshLayout.setRefreshing(false);
                     }
 
@@ -80,17 +80,17 @@ public class PuvListActivity extends AppCompatActivity {
 
 
 
-    private void prepareSeminars() {
+    private void preparePuvs() {
         spinner.setVisibility(View.VISIBLE);
-        seminarsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        puvsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Puv seminar;
-                for (DataSnapshot seminarSnapshot : dataSnapshot.getChildren()) {
-                    seminar = seminarSnapshot.getValue(Puv.class);
-                    seminar.setId(seminarSnapshot.getKey());
-                    seminarList.add(seminar);
-                    rv.setAdapter(seminarAdapter);
+                Puv puv;
+                for (DataSnapshot puvSnapshot : dataSnapshot.getChildren()) {
+                    puv = puvSnapshot.getValue(Puv.class);
+                    puv.setId(puvSnapshot.getKey());
+                    puvList.add(puv);
+                    rv.setAdapter(puvAdapter);
                 }
                 spinner.setVisibility(View.GONE);
             }

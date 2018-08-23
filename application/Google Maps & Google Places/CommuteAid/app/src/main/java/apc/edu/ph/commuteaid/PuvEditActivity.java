@@ -24,11 +24,11 @@ import java.util.List;
 public class PuvEditActivity extends AppCompatActivity {
 
     private DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-    private DatabaseReference seminarRef = rootRef.child("seminars");
+    private DatabaseReference puvRef = rootRef.child("puvs");
     private DatabaseReference venuesRef = rootRef.child("venues");
     private DatabaseReference categoriesRef = rootRef.child("categories");;
 
-    private TextInputEditText et_title, et_date, et_start, et_end, et_speaker, et_agenda;
+    private TextInputEditText et_platenumber, et_date, et_start, et_end, et_availableseats, et_remarks;
     private Spinner sp_venue, sp_category;
     private Button bt_save;
     private CoordinatorLayout coordinatorLayout;
@@ -85,12 +85,13 @@ public class PuvEditActivity extends AppCompatActivity {
         sp_category = (Spinner) findViewById(R.id.sp_category);
 
 
-        et_title = (TextInputEditText) findViewById(R.id.et_seminar_title);
+        et_platenumber = (TextInputEditText) findViewById(R.id.et_puv_platenumber);
         et_date = (TextInputEditText) findViewById(R.id.et_date);
         et_start = (TextInputEditText) findViewById(R.id.et_start);
         et_end = (TextInputEditText) findViewById(R.id.et_end);
-        et_speaker = (TextInputEditText) findViewById(R.id.et_speaker);
-        et_agenda = (TextInputEditText) findViewById(R.id.et_agenda);
+        et_availableseats = (TextInputEditText) findViewById(R.id.et_availableseats);
+        et_remarks = (TextInputEditText) findViewById(R.id.et_agenda);
+      //  et_route = (TextInputEditText) findViewById(R.id.et_route);
         sp_venue = (Spinner) findViewById(R.id.sp_venue);
         bt_save = (Button) findViewById(R.id.bt_save);
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
@@ -109,17 +110,17 @@ public class PuvEditActivity extends AppCompatActivity {
         bt_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String title, category, date, start, end, venue, speaker, agenda;
-                title = et_title.getText().toString();
+                String platenumber, category, date, start, end, venue, availableseats, remarks, route;
+                platenumber = et_platenumber.getText().toString();
                 category = sp_category.getSelectedItem().toString();
                 date = et_date.getText().toString();
                 start = et_start.getText().toString();
                 end = et_end.getText().toString();
-                speaker = et_speaker.getText().toString();
-                agenda = et_agenda.getText().toString();
+               // route = et_route.getText().toString();
+                availableseats = et_availableseats.getText().toString();
+                remarks = et_remarks.getText().toString();
                 venue = sp_venue.getSelectedItem().toString();
-
-                setNewSeminar(title, category, date, start, end, venue, speaker, agenda);
+                setNewPuv(platenumber, category, date, start, end, venue, availableseats, remarks);
 
                 snackbar.show();
             }
@@ -128,15 +129,15 @@ public class PuvEditActivity extends AppCompatActivity {
 
     }
 
-    private void setNewSeminar(String title, String category, String date, String start, String end, String venue, String speaker, String agenda) {
-        DatabaseReference seminarRef = FirebaseDatabase.getInstance().getReference().child("seminars");
-        Puv seminar = new Puv(title, category, date, start, end, venue, speaker, agenda);
+    private void setNewPuv(String platenumber, String category, String date, String start, String end, String venue, String availableseats, String remarks) {
+        DatabaseReference puvRef = FirebaseDatabase.getInstance().getReference().child("puvs");
+        Puv puv = new Puv(platenumber, category, date, start, end, venue, availableseats, remarks);
         try {
-            seminarRef.push().setValue(seminar);
+            puvRef.push().setValue(puv);
         } catch (Exception e){
             Toast.makeText(this, "Connecting... please try again in a few seconds.", Toast.LENGTH_SHORT).show();
         }
-        Toast.makeText(this, title + " " + date + " " + start + " " + end + " " + venue + " " + speaker + " " + agenda, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, platenumber + " " + date + " " + start + " " + end + " " + venue + " " + availableseats + " " + remarks, Toast.LENGTH_SHORT).show();
     }
 
 }

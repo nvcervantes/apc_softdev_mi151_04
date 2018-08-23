@@ -29,11 +29,11 @@ import java.util.List;
 public class PuvQuestionsFragment extends Fragment {
     private static final String TAG = "PuvQuestionsFragment";
 
-    private TextView title;
+    private TextView platenumber;
     private FloatingActionButton fabNewQ;
     private RecyclerView rv;
-    private PuvActivity seminarActivity;
-    private Puv seminar;
+    private PuvActivity puvActivity;
+    private Puv puv;
     private List<Question> questions = new ArrayList<>();
     private QuestionAdapter questionAdapter;
 
@@ -46,13 +46,13 @@ public class PuvQuestionsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_questions, container, false);
 
-        seminarActivity = (PuvActivity) getActivity();
-        seminar = seminarActivity.getSeminar();
+        puvActivity = (PuvActivity) getActivity();
+        puv = puvActivity.getPuv();
 
 
         rv = (RecyclerView) view.findViewById(R.id.rv_questions);
-        questionAdapter = new QuestionAdapter(seminarActivity, questions);
-        LinearLayoutManager tLayoutManager = new LinearLayoutManager(seminarActivity);
+        questionAdapter = new QuestionAdapter(puvActivity, questions);
+        LinearLayoutManager tLayoutManager = new LinearLayoutManager(puvActivity);
         rv.setLayoutManager(tLayoutManager);
         rv.setItemAnimator(new DefaultItemAnimator());
 
@@ -61,7 +61,7 @@ public class PuvQuestionsFragment extends Fragment {
         fabNewQ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Dialog dialog = new Dialog(seminarActivity);
+                final Dialog dialog = new Dialog(puvActivity);
 
                 dialog.setContentView(R.layout.fragment_new_question);
                 final TextInputEditText et_question = (TextInputEditText) dialog.findViewById(R.id.et_question);
@@ -71,7 +71,7 @@ public class PuvQuestionsFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         Question question = new Question(et_question.getText().toString());
-                        questionsRef = rootRef.child("seminars/" + seminar.getId() + "/questions");
+                        questionsRef = rootRef.child("puvs/" + puv.getId() + "/questions");
                         questionsRef.push().setValue(question);
                         dialog.dismiss();
                     }
@@ -81,14 +81,14 @@ public class PuvQuestionsFragment extends Fragment {
             }
         });
 
-        prepareQuestions(seminar.getId());
+        prepareQuestions(puv.getId());
 
 
         return view;
     }
 
-    private void prepareQuestions(String seminarId) {
-        questionsRef = rootRef.child("seminars/" + seminarId + "/questions");
+    private void prepareQuestions(String puvId) {
+        questionsRef = rootRef.child("puvs/" + puvId + "/questions");
 
         questionsRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -98,7 +98,7 @@ public class PuvQuestionsFragment extends Fragment {
                 for (DataSnapshot questionSnapshot : dataSnapshot.getChildren()) {
                     question = questionSnapshot.getValue(Question.class);
                     question.setId(questionSnapshot.getKey());
-                    question.setSeminarId(seminar.getId());
+                    question.setPuvId(puv.getId());
                     questions.add(question);
 
                 }

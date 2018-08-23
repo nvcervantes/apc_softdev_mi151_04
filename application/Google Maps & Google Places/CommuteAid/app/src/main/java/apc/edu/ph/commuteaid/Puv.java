@@ -7,7 +7,7 @@ public class Puv {
 
 
 
-    public String id, title, category,date, start, end, speaker, venue, agenda;
+    public String id, platenumber, category, date, start, end, availableseats, venue, remarks, route;
 
 
 
@@ -16,27 +16,29 @@ public class Puv {
 
     }
 
-    public Puv(String id, String title, String category, String date, String start, String end, String venue, String speaker, String agenda) {
+    public Puv(String id, String platenumber, String category, String date, String start, String end, String venue, String availableseats, String remarks) {
         this.id = id;
-        this.title = title;
+        this.platenumber = platenumber;
         this.category = category;
         this.date = date;
         this.start = start;
         this.end = end;
         this.venue = venue;
-        this.speaker = speaker;
-        this.agenda = agenda;
+        this.availableseats = availableseats;
+        this.remarks = remarks;
+        //this.route = route;
     }
 
-    public Puv(String title, String category, String date, String start, String end, String venue, String speaker, String agenda) {
-        this.title = title;
+    public Puv(String platenumber, String category, String date, String start, String end, String venue, String availableseats, String remarks) {
+        this.platenumber = platenumber;
         this.category = category;
         this.date = date;
         this.start = start;
         this.end = end;
         this.venue = venue;
-        this.speaker = speaker;
-        this.agenda = agenda;
+        this.availableseats = availableseats;
+        this.remarks = remarks;
+        //this.route = route;
     }
 
     public String getId() {
@@ -63,12 +65,12 @@ public class Puv {
         this.venue = venue;
     }
 
-    public String getTitle() {
-        return title;
+    public String getPlatenumber() {
+        return platenumber;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setPlatenumber(String platenumber) {
+        this.platenumber = platenumber;
     }
 
     public String getDate() {
@@ -95,19 +97,21 @@ public class Puv {
         this.end = end;
     }
 
-    public String getSpeaker() {
-        return speaker;
+    public String getAvailableseats() {
+        return availableseats;
     }
 
-    public void setSpeaker(String speaker) {
-        this.speaker = speaker;
+    public void setAvailableseats(String availableseats) {
+        this.availableseats = availableseats;
     }
 
-    public String getAgenda() {
-        return agenda;
+    public String getRemarks() {
+        return remarks;
     }
 
-    public void setAgenda(String agenda) {
-        this.agenda = agenda;
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
     }
+
+
 }

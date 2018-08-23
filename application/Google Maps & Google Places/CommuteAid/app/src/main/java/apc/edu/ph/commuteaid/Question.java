@@ -69,11 +69,11 @@ public class Question {
         this.questioner = questioner;
     }
 
-    public String getSeminarId() {
+    public String getPuvId() {
         return seminarId;
     }
 
-    public void setSeminarId(String seminarId) {
+    public void setPuvId(String seminarId) {
         this.seminarId = seminarId;
     }
 

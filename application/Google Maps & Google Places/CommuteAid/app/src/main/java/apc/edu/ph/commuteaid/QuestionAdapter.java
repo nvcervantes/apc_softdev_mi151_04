@@ -12,11 +12,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -87,7 +84,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.MyView
                     @Override
                     public void onClick(View v) {
                         question.setAnswer(et_answer.getText().toString());
-                        questionsRef = rootRef.child("seminars/" + question.getSeminarId() + "/questions/" + question.getId());
+                        questionsRef = rootRef.child("puvs/" + question.getPuvId() + "/questions/" + question.getId());
                         questionsRef.setValue(question);
                         dialog.dismiss();
                     }

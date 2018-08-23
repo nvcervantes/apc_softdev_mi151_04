@@ -22,10 +22,10 @@ import java.util.List;
 public class PuvPollsFragment extends Fragment {
     private static final String TAG = "PuvPollsFragment";
 
-    private TextView title;
+    private TextView platenumber;
     private Button bt_newoption, bt_start;
-    private PuvActivity seminarActivity;
-    private Puv seminar;
+    private PuvActivity puvActivity;
+    private Puv puv;
     private LinearLayout ll;
     private ViewGroup optionLayout;
     private List<TextInputEditText> pollOption = new ArrayList<>();
@@ -36,7 +36,7 @@ public class PuvPollsFragment extends Fragment {
     public View onCreateView(final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_polls, container, false);
 
-        seminarActivity = (PuvActivity) getActivity();
+        puvActivity = (PuvActivity) getActivity();
 
         ll = (LinearLayout) view.findViewById(R.id.csp_choices);
         bt_newoption = (Button) view.findViewById(R.id.csp_addoption);
@@ -54,7 +54,7 @@ public class PuvPollsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 for (EditText et : pollOption) {
-                    Toast.makeText(seminarActivity, et.getText().toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(puvActivity, et.getText().toString(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -63,7 +63,7 @@ public class PuvPollsFragment extends Fragment {
     }
 
     private void addPoll() {
-        LayoutInflater inflater = seminarActivity.getLayoutInflater();
+        LayoutInflater inflater = puvActivity.getLayoutInflater();
         final View views = inflater.inflate(R.layout.list_poll_option_item, ll, false);
 
         TextInputLayout til = (TextInputLayout) views.findViewById(R.id.etl_option);

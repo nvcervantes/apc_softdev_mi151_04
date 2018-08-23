@@ -13,9 +13,9 @@ import android.widget.TextView;
 public class PuvInfoFragment extends Fragment {
     private static final String TAG = "PuvInfoFragment";
 
-    private TextView title, date, venue, speaker, agenda;
-    private PuvActivity seminarActivity;
-    private Puv seminar;
+    private TextView platenumber, date, venue, availableseats, remarks;
+    private PuvActivity puvActivity;
+    private Puv puv;
 
 
     @Nullable
@@ -23,22 +23,22 @@ public class PuvInfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_info, container, false);
 
-        seminarActivity = new PuvActivity();
+        puvActivity = new PuvActivity();
 
-        title = (TextView) view.findViewById(R.id.stv_title);
+        platenumber = (TextView) view.findViewById(R.id.stv_title);
         date = (TextView) view.findViewById(R.id.stv_date);
         venue = (TextView) view.findViewById(R.id.stv_venue);
-        speaker = (TextView) view.findViewById(R.id.stv_speaker);
-        agenda = (TextView) view.findViewById(R.id.stv_agenda);
+        availableseats = (TextView) view.findViewById(R.id.stv_speaker);
+        remarks = (TextView) view.findViewById(R.id.stv_agenda);
 
-        seminarActivity = (PuvActivity)getActivity();
-        seminar = seminarActivity.getSeminar();
+        puvActivity = (PuvActivity)getActivity();
+        puv = puvActivity.getPuv();
 
-        title.setText(seminar.getTitle());
-        date.setText(seminar.getDate() + " " + seminar.getStart() + " — " + seminar.getEnd());
-        venue.setText(seminar.getVenue());
-        speaker.setText(seminar.getSpeaker());
-        agenda.setText(seminar.getAgenda());
+        platenumber.setText(puv.getPlatenumber());
+        date.setText(puv.getDate() + " " + puv.getStart() + " — " + puv.getEnd());
+        venue.setText(puv.getVenue());
+        availableseats.setText(puv.getAvailableseats());
+        remarks.setText(puv.getRemarks());
 
 
         return view;
