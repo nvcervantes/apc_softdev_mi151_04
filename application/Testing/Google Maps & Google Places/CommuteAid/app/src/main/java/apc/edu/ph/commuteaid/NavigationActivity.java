@@ -131,8 +131,8 @@ public class NavigationActivity extends AppCompatActivity implements
                 originMarker = mapboxMap.addMarker(new MarkerOptions().position(originCoord));
                 destinationMarker = mapboxMap.addMarker(new MarkerOptions().position(destinationCoord));
 
-                originPosition = Point.fromLngLat(originCoordLat, originCoordLng);
-                destinationPosition = Point.fromLngLat(destinationCoordLat, destinationCoordLng);
+                originPosition = Point.fromLngLat(originCoord.getLongitude(), originCoord.getLatitude());
+                destinationPosition = Point.fromLngLat(destinationCoord.getLongitude(), destinationCoord.getLatitude());
                 getRoute(originPosition, destinationPosition);
 
                 button = findViewById(R.id.startButton);
