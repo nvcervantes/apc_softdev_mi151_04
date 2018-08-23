@@ -204,6 +204,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 String destinationLat = Double.toString(destinationCoordLat);
                 String destinationLng = Double.toString(destinationCoordLng);
                 Intent navigateIntent = new Intent(MapActivity.this, NavigationActivity.class);
+                Log.d(TAG, "origin latitude: " + originCoordLat);
+                Log.d(TAG, "origin longitude: " + originCoordLng);
+                Log.d(TAG, "destination latitude: " + destinationCoordLat);
+                Log.d(TAG, "destination latitude: " + destinationCoordLng);
                 navigateIntent.putExtra("originCoordLat", originLat);
                 navigateIntent.putExtra("originCoordLng", originLng);
                 navigateIntent.putExtra("destinationCoordLat", destinationLat);
