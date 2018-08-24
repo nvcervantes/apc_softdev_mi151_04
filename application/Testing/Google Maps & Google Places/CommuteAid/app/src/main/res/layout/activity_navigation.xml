@@ -2,7 +2,6 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:mapbox="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -24,7 +23,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20px"
-        android:background="@color/mapboxBlue"
+        android:background="@color/mapboxGrayLight"
+        android:enabled="false"
         android:padding="5px"
         android:text="Start navigation"
         android:textColor="@color/mapboxWhite" />
