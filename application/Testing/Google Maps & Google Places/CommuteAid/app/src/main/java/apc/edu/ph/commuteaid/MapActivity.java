@@ -104,11 +104,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private PlaceInfo mPlace;
     private Marker mMarker;
 
-    private Button button;
-    private double originCoordLat = 0.0;
-    private double originCoordLng = 0.0;
-    private double destinationCoordLat = 0.0;
-    private double destinationCoordLng = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,7 +113,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mGPS = (ImageView) findViewById(R.id.ic_gps);
         mInfo = (ImageView) findViewById(R.id.place_info);
         mPlacePicker = (ImageView) findViewById(R.id.place_picker);
-        button = (Button) findViewById(R.id.startButton);
 
         getLocationPermission();
     }
@@ -196,27 +190,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             }
         });
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String originLat = Double.toString(originCoordLat);
-                String originLng = Double.toString(originCoordLng);
-                String destinationLat = Double.toString(destinationCoordLat);
-                String destinationLng = Double.toString(destinationCoordLng);
-                Intent navigateIntent = new Intent(MapActivity.this, NavigationActivity.class);
-                Log.d(TAG, "origin latitude: " + originCoordLat);
-                Log.d(TAG, "origin longitude: " + originCoordLng);
-                Log.d(TAG, "destination latitude: " + destinationCoordLat);
-                Log.d(TAG, "destination latitude: " + destinationCoordLng);
-                navigateIntent.putExtra("originCoordLat", originLat);
-                navigateIntent.putExtra("originCoordLng", originLng);
-                navigateIntent.putExtra("destinationCoordLat", destinationLat);
-                navigateIntent.putExtra("destinationCoordLng", destinationLng);
-                startActivity(navigateIntent);
-
-            }
-        });
-
         hideSoftKeyboard();
     }
 
@@ -247,10 +220,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             Log.d(TAG, "geoLocate: found a location: " + address.toString());
             //Toast.makeText(this, address.toString(), Toast.LENGTH_SHORT).show();
             moveCamera(new LatLng(address.getLatitude(), address.getLongitude()), DEFAULT_ZOOM, address.getAddressLine(0));
-            button.setEnabled(true);
-            button.setBackgroundResource(R.color.mapboxBlue);
-            destinationCoordLat = address.getLatitude();
-            destinationCoordLng = address.getLongitude();
         }
     }
 
@@ -267,8 +236,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                             Log.d(TAG, "onComplete: found location!");
                             Location currentLocation = (Location) task.getResult();
                             moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()), DEFAULT_ZOOM, "My Location");
-                            originCoordLat = currentLocation.getLatitude();
-                            originCoordLng = currentLocation.getLongitude();
                         }else{
                             Log.d(TAG, "onComplete: current location is null");
                             Toast.makeText(MapActivity.this, "unable to get current location", Toast.LENGTH_SHORT).show();
@@ -316,10 +283,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     .position(latLng)
                     .title(title);
             mMap.addMarker(options);
-            destinationCoordLat = latLng.latitude;
-            destinationCoordLng = latLng.longitude;
-            button.setEnabled(true);
-            button.setBackgroundResource(R.color.mapboxBlue);
         }
 
         hideSoftKeyboard();
@@ -422,6 +385,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 
             mPlace.setLatLng(place.getLatLng());
                 Log.d(TAG, "onResult: latlng: " + place.getLatLng());
+
             
             mPlace.setRating(place.getRating());
                 Log.d(TAG, "onResult: rating: " + place.getRating());

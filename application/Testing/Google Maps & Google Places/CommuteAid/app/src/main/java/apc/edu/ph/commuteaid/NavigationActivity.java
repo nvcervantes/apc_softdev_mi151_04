@@ -1,4 +1,5 @@
 package apc.edu.ph.commuteaid;
+
 import java.util.List;
 
 import android.content.Context;
@@ -59,10 +60,61 @@ import android.widget.Button;
 
 import com.mapbox.services.android.navigation.ui.v5.NavigationLauncher;
 
+
+// classes needed to add location layer
+import com.mapbox.geojson.Point;
+import com.mapbox.mapboxsdk.maps.MapboxMap;
+import com.mapbox.mapboxsdk.maps.OnMapReadyCallback;
+
+import android.location.Location;
+
+import com.mapbox.mapboxsdk.geometry.LatLng;
+
+import android.support.annotation.NonNull;
+
+import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
+import com.mapbox.mapboxsdk.plugins.locationlayer.LocationLayerPlugin;
+import com.mapbox.mapboxsdk.plugins.locationlayer.modes.RenderMode;
+import com.mapbox.services.android.navigation.ui.v5.NavigationLauncherOptions;
+import com.mapbox.android.core.location.LocationEngine;
+import com.mapbox.android.core.location.LocationEngineListener;
+import com.mapbox.android.core.location.LocationEnginePriority;
+import com.mapbox.android.core.location.LocationEngineProvider;
+import com.mapbox.android.core.permissions.PermissionsListener;
+import com.mapbox.android.core.permissions.PermissionsManager;
+
+
+// classes needed to add a marker
+import com.mapbox.mapboxsdk.annotations.Marker;
+import com.mapbox.mapboxsdk.annotations.MarkerOptions;
+
+
+// classes to calculate a route
+import com.mapbox.services.android.navigation.ui.v5.route.NavigationMapRoute;
+import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
+import com.mapbox.api.directions.v5.models.DirectionsResponse;
+import com.mapbox.api.directions.v5.models.DirectionsRoute;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import android.util.Log;
+
+
+// classes needed to launch navigation UI
+import android.view.View;
+import android.widget.Button;
 import android.widget.Switch;
 
+import com.mapbox.services.android.navigation.ui.v5.NavigationLauncher;
+
+import com.mapbox.services.android.navigation.ui.v5.NavigationView;
+import com.mapbox.services.android.navigation.ui.v5.NavigationViewOptions;
+import com.mapbox.services.android.navigation.ui.v5.OnNavigationReadyCallback;
 import com.mapbox.services.android.navigation.ui.v5.listeners.NavigationListener;
 import com.mapbox.services.android.navigation.ui.v5.listeners.RouteListener;
+import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
 import com.mapbox.services.android.navigation.v5.routeprogress.ProgressChangeListener;
 import com.mapbox.services.android.navigation.v5.routeprogress.RouteProgress;
 
@@ -83,7 +135,6 @@ public class NavigationActivity extends AppCompatActivity implements
 
 
     // variables for adding a marker
-    private Marker originMarker;
     private Marker destinationMarker;
     private LatLng originCoord;
     private LatLng destinationCoord;
@@ -111,34 +162,46 @@ public class NavigationActivity extends AppCompatActivity implements
         Mapbox.getInstance(this, getString(R.string.access_token));
         setContentView(R.layout.activity_navigation);
         mapView = findViewById(R.id.mapView);
+
         context = this;
-        Intent naviIntent = getIntent();
-        double originCoordLat = Double.parseDouble(naviIntent.getStringExtra("originCoordLat"));
-        double originCoordLng = Double.parseDouble(naviIntent.getStringExtra("originCoordLng"));
-        double destinationCoordLat = Double.parseDouble(naviIntent.getStringExtra("destinationCoordLat"));
-        double destinationCoordLng = Double.parseDouble(naviIntent.getStringExtra("destinationCoordLng"));
-            
-        Log.d(TAG, "origin latitude: " + originCoordLat);
-        Log.d(TAG, "origin longitude: " + originCoordLng);
-        Log.d(TAG, "destination latitude: " + destinationCoordLat);
-        Log.d(TAG, "destination latitude: " + destinationCoordLng);
+
 
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(final MapboxMap mapboxMap) {
 
+
                 map = mapboxMap;
                 enableLocationPlugin();
 
-                originCoord = new LatLng(originCoordLat, originCoordLng);
-                destinationCoord = new LatLng(destinationCoordLat, destinationCoordLng);
 
-                originMarker = mapboxMap.addMarker(new MarkerOptions().position(originCoord));
-                destinationMarker = mapboxMap.addMarker(new MarkerOptions().position(destinationCoord));
+                originCoord = new LatLng(originLocation.getLatitude(), originLocation.getLongitude());
+                mapboxMap.addOnMapClickListener(new MapboxMap.OnMapClickListener() {
+                    @Override
+                    public void onMapClick(@NonNull LatLng point) {
+                        if (destinationMarker != null) {
+                            mapboxMap.removeMarker(destinationMarker);
+                        }
+                        destinationCoord = point;
+                        destinationMarker = mapboxMap.addMarker(new MarkerOptions()
+                                .position(destinationCoord)
+                        );
 
-                originPosition = Point.fromLngLat(originCoord.getLongitude(), originCoord.getLatitude());
-                destinationPosition = Point.fromLngLat(destinationCoord.getLongitude(), destinationCoord.getLatitude());
-                getRoute(originPosition, destinationPosition);
+
+                        destinationPosition = Point.fromLngLat(destinationCoord.getLongitude(), destinationCoord.getLatitude());
+                        originPosition = Point.fromLngLat(originCoord.getLongitude(), originCoord.getLatitude());
+                        getRoute(originPosition, destinationPosition);
+
+
+                        button.setEnabled(true);
+                        button.setBackgroundResource(R.color.mapboxBlue);
+
+
+                    }
+
+                    ;
+                });
+
 
                 button = findViewById(R.id.startButton);
                 locationAlarm = findViewById(R.id.location_alarm);
@@ -166,7 +229,11 @@ public class NavigationActivity extends AppCompatActivity implements
                         NavigationLauncher.startNavigation(NavigationActivity.this, options);
                     }
                 });
+
+
             }
+
+            ;
         });
 
 
@@ -358,7 +425,7 @@ public class NavigationActivity extends AppCompatActivity implements
 
     @Override
     public void onProgressChange(Location location, RouteProgress routeProgress) {
-        Log.d(TAG, "routeProgress: tracking: " + routeProgress.toString());
+        location = originLocation;
         if (geoAlarm && routeProgress.distanceRemaining() < 0.5 && !alarmSounded){
             alarmSounded = true;
             AlertDialog.Builder alarm = new AlertDialog.Builder(this);

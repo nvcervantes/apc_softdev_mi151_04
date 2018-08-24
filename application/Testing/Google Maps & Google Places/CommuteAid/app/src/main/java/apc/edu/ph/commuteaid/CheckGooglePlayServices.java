@@ -38,6 +38,16 @@ public class CheckGooglePlayServices extends AppCompatActivity {
                 finish();
             }
         });
+
+        Button btnNavigate = (Button) findViewById(R.id.btnNavigate);
+        btnNavigate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent naviIntent = new Intent(CheckGooglePlayServices.this, NavigationActivity.class);
+                startActivity(naviIntent);
+                finish();
+            }
+        });
     }
 
     public boolean isServicesOK(){
