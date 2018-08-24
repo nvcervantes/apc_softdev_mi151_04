@@ -77,17 +77,4 @@
         android:id="@+id/place_info"
         android:src="@drawable/ic_info"/>
 
-    <Button
-        android:id="@+id/startButton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="20px"
-        android:layout_marginBottom="12dp"
-        android:background="@color/mapboxBlue"
-        android:padding="5px"
-        android:text="Directions"
-        android:textColor="@color/mapboxWhite" />
-
 </RelativeLayout>
